@@ -31,17 +31,14 @@ Unlike hash maps, vectors, or linked lists, `KeyArray` is optimized for use-case
 
 ## 📊 Comparison with Other Data Structures
 
-| Operation           | KeyArray (fixed) | KeyArray (dynamic) | `std::unordered_map` | `std::map` | `std::vector` |
-|---------------------|------------------|---------------------|-----------------------|------------|----------------|
-| Insert              | **O(1)**         | **O(1)** (amortized)| O(1) avg / O(n) worst | O(log n)   | O(1) amortized |
-| Remove              | **O(1)**         | **O(1)**             | O(1) avg / O(n) worst | O(log n)   | O(n)           |
-| Access by key       | **O(1)**         | **O(1)**             | O(1) avg / O(n) worst | O(log n)   | O(1)           |
-| Check key existence | **O(1)**         | **O(1)**             | O(1) avg / O(n) worst | O(log n)   | O(n)           |
-| Iterate             | O(n)             | O(n)                 | O(n)                  | O(n)       | O(n)           |
-| Check value exists  | O(n)             | O(n)                 | O(n)                  | O(n)       | O(n)           |
-| Clear structure     | O(1)             | O(1)                 | O(n)                  | O(n)       | O(n)           |
-
-> ⚠️ Note: `contains(value)` is intentionally O(n) since it's a convenience feature and not recommended for performance-critical code.
+| Operation           | KeyArray (fixed) |   KeyArray (dynamic)    | `std::unordered_map` | `std::map` |    `std::vector`    |
+|---------------------|------------------|-------------------------|----------------------|------------|---------------------|
+| Insert              | ✅**O(1)**       | ✅**O(1)** (amortized) | O(1) avg             | O(log n)   | ✅O(1) (amortized) |
+| Remove              | ✅**O(1)**       | ✅**O(1)**             | O(1) avg             | O(log n)   | O(n)                |
+| Access by key       | ✅**O(1)**       | ✅**O(1)**             | O(1) avg             | O(log n)   | ✅O(1)             |
+| Check key existence | ✅**O(1)**       | ✅**O(1)**             | O(1) avg             | O(log n)   | O(n)                |
+| Iterate             | ✅O(n)           | ✅O(n)                 | ✅O(n)               | ✅O(n)    | ✅O(n)             |
+| Clear structure     | ✅O(1)           | ✅O(1)                 | O(n)                 | O(n)       | O(n)                |
 
 ---
 
@@ -137,5 +134,17 @@ g++ -std=c++17 -IdataBase/include main.cpp -o main
 MIT License – Free for personal and commercial use.
 
 ---
+## 🤝 Feedback, Collaboration, and Support
+
+Have a question, idea, or suggestion?  
+Feel free to [open an issue](https://github.com/eliShif/KeyArray/issues) — I'm happy to hear feedback and improve this project.
+
+### 💼 Looking to Collaborate?
+
+If you're interested in expanding this project, integrating it into your system, or discussing ways to work together — feel free to reach out via [GitHub](https://github.com/eliShif).
+
+---
 
 > ✅ Built for performance. Designed for clarity. Ready for extension.
+
+
