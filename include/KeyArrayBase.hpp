@@ -1,5 +1,5 @@
 // KeyArrayBase: Base structure for KeyArray
-// Author: [Your Name]
+// Author: Eli (Eliyahu) Shif
 
 #ifndef KEYARRAYBASE_HPP
 #define KEYARRAYBASE_HPP

@@ -85,10 +85,10 @@ int main() {
 ## 🧩 When to Use
 
 Use `KeyArray` when:
-- You want **fast and predictable** time for key operations.
+- You want **fast, predictable, and guaranteed O(1)** time for key-based operations.
 - You’re mapping external numeric IDs (like handles, sockets, or user indices).
-- You want an **alternative to hash maps** without worrying about collisions.
-- You’re managing fixed-capacity pools (e.g., connection pools, game entities).
+- You want an **alternative to hash maps** without worrying about collisions or hash function overhead.
+- You’re managing **fixed-capacity or dynamically resizable pools** (e.g., connection pools, game entities).
 
 ---
 
@@ -112,8 +112,11 @@ KeyArray/
 │   ├── KeyArrayBase.hpp
 │   └── KeyPool.hpp
 ├── examples/
-│   └── main.cpp
+│   └── example.cpp
 ├── README.md
+├── EXPLANATIONS.md
+├── GITHUB_TEMPLATE.md
+├── .gitignore
 ```
 
 ---
@@ -123,9 +126,10 @@ KeyArray/
 To compile and run:
 
 ```bash
-g++ -std=c++17 -IdataBase/include main.cpp -o main
-./main
+g++ -std=c++17 -Iinclude examples/example.cpp -o example.exe
+.\example.exe
 ```
+➡️ See [`example.cpp`](./example.cpp) for a full demonstration of how to use KeyArray in fixed, dynamic, and overflow modes.
 
 ---
 

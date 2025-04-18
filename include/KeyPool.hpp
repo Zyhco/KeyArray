@@ -1,5 +1,5 @@
 // KeyPool: Enhanced key pool manager (Header)
-// Author: [Your Name]
+// Author: Eli (Eliyahu) Shif
 
 #ifndef KEYPOOL_HPP
 #define KEYPOOL_HPP

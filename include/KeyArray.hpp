@@ -1,5 +1,5 @@
 // KeyArray: Extended structure for KeyArray
-// Author: [Your Name]
+// Author: Eli (Eliyahu) Shif
 
 #ifndef KEYARRAY_HPP
 #define KEYARRAY_HPP
