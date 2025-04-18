@@ -1,0 +1,33 @@
+# Ignore build files
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+
+# Ignore editor-specific files
+*.log
+*.user
+*.suo
+*.sdf
+*.vcxproj
+*.vcxproj.filters
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+cmake-build-*/
+
+# Backup/temporary files
+*~
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+
+# Binaries (in case they’re in your project folder)
+main
+main.exe
