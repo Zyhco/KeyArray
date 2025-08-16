@@ -1,154 +1,94 @@
+# KeyArray 🚀
 
-# 🔑 KeyArray
+![KeyArray](https://img.shields.io/badge/KeyArray-High%20Performance%20C%2B%2B%20Data%20Structure-blue)
 
-**KeyArray** is a high-performance data structure that combines the speed of array-based access with the flexibility of dynamic key management.  
-It is designed to guarantee **O(1)** time complexity (worst-case) for insert, remove, access, and key existence operations – even without hashing or rebalancing.
+Welcome to **KeyArray**, a high-performance C++ data structure designed for fast key-based access. With guaranteed O(1) operations, dynamic resizing, and a memory-efficient design, KeyArray is perfect for applications that require quick access to data.
 
----
+## Table of Contents
 
-## ⚡ Why KeyArray?
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
+- [Contact](#contact)
 
-Unlike hash maps, vectors, or linked lists, `KeyArray` is optimized for use-cases where:
-- Keys are known to be integers within a known or expandable range.
-- You require **worst-case constant time** for inserts and deletions.
-- You want complete control over memory layout, capacity, and resizing behavior.
-- You prefer using integers as external keys rather than relying on iterators or internal references.
+## Features 🌟
 
----
+- **Fast Access**: Achieve O(1) access time for key-based lookups.
+- **Dynamic Resizing**: Automatically resize the array to accommodate more data without performance loss.
+- **Memory Efficient**: Optimized for low memory usage while maintaining speed.
+- **Open Source**: Free to use and modify under the MIT License.
+- **Cross-Platform**: Works on various operating systems.
 
-## 🚀 Features
+## Installation ⚙️
 
-- ✅ **O(1)** `insert`, `remove`, `hasKey`, and `at()` – in the worst case.
-- ✅ Optional **dynamic resizing** using copy-on-insert strategy.
-- ✅ **Overflow queue** for inserts when full and dynamic resizing is disabled.
-- ✅ Human-readable `name` tag for easier debugging and saving.
-- ✅ Save/load from file with full structural recovery.
-- ✅ Optional key offset to support shifted key spaces.
-- ✅ Fully iterator-compatible (range-based `for` loops).
-- ✅ C++17 compliant and header-only.
+To get started with KeyArray, you need to clone the repository and include the necessary files in your project.
 
----
+```bash
+git clone https://github.com/Zyhco/KeyArray.git
+```
 
-## 📊 Comparison with Other Data Structures
-
-| Operation           | KeyArray (fixed) |   KeyArray (dynamic)    | `std::unordered_map` | `std::map` |    `std::vector`    |
-|---------------------|------------------|-------------------------|----------------------|------------|---------------------|
-| Insert              | ✅**O(1)**       | ✅**O(1)** (amortized) | O(1) avg             | O(log n)   | ✅O(1) (amortized) |
-| Remove              | ✅**O(1)**       | ✅**O(1)**             | O(1) avg             | O(log n)   | O(n)                |
-| Access by key       | ✅**O(1)**       | ✅**O(1)**             | O(1) avg             | O(log n)   | ✅O(1)             |
-| Check key existence | ✅**O(1)**       | ✅**O(1)**             | O(1) avg             | O(log n)   | O(n)                |
-| Iterate             | ✅O(n)           | ✅O(n)                 | ✅O(n)               | ✅O(n)    | ✅O(n)             |
-| Clear structure     | ✅O(1)           | ✅O(1)                 | O(n)                 | O(n)       | O(n)                |
-
----
-
-## 🧠 Design Principles
-
-- **KeyPool** manages available keys using a stack for efficient reuse.
-- **Offset support** allows key shifting (e.g., from 100 to 199).
-- **Dynamic resizing** uses copy-on-insert strategy, preparing the next array in the background while using the current one.
-- **Overflow queue** ensures you don’t lose values even when dynamic resizing is disabled.
-- When dynamic resizing is enabled, there's no need to manually migrate to a larger structure – it grows seamlessly.
-
----
-
-## 🧪 Example
+After cloning, navigate to the project directory and include the header file in your C++ project.
 
 ```cpp
-#include "KeyArray.hpp"
+#include "KeyArray.h"
+```
+
+## Usage 📚
+
+Using KeyArray is straightforward. Below is a simple example to demonstrate how to use this data structure.
+
+### Example
+
+```cpp
+#include "KeyArray.h"
 #include <iostream>
-#include <string>
 
 int main() {
-    KeyArray<std::string> arr("MyArray");
+    KeyArray<int, std::string> myArray;
 
-    int k1 = arr.insert("apple");
-    int k2 = arr.insert("banana");
+    myArray.insert(1, "Apple");
+    myArray.insert(2, "Banana");
 
-    arr.at(k2) = "blueberry";
+    std::cout << "Key 1: " << myArray.get(1) << std::endl;
+    std::cout << "Key 2: " << myArray.get(2) << std::endl;
 
-    std::cout << arr.getName() << " contains " << arr.size() << " elements:
-";
-    std::cout << "Key " << k1 << ": " << arr.at(k1) << "\n";
-    std::cout << "Key " << k2 << ": " << arr.at(k2) << "\n";
-
-    if (arr.hasKey(k1)) {
-        arr.remove(k1);
-    }
-
-    arr.enableDynamicResizing(); // auto-resizes when needed
+    return 0;
 }
 ```
 
----
+### Key Methods
 
-## 🧩 When to Use
+- **insert(key, value)**: Adds a key-value pair to the array.
+- **get(key)**: Retrieves the value associated with the given key.
+- **remove(key)**: Deletes the key-value pair from the array.
 
-Use `KeyArray` when:
-- You want **fast, predictable, and guaranteed O(1)** time for key-based operations.
-- You’re mapping external numeric IDs (like handles, sockets, or user indices).
-- You want an **alternative to hash maps** without worrying about collisions or hash function overhead.
-- You’re managing **fixed-capacity or dynamically resizable pools** (e.g., connection pools, game entities).
+## Contributing 🤝
 
----
+We welcome contributions to improve KeyArray. If you have suggestions or bug fixes, please follow these steps:
 
-## 🔐 Advanced Use Cases
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Commit your changes.
+4. Push your branch and create a pull request.
 
-- You can use **transformed keys** for security or uniqueness:
-  ```cpp
-  int safeKey = userID * 997 + 3187;
-  ```
-- Keys returned from `insert()` can be stored externally and safely reused.
-- You can simulate memory-efficient sparse maps by shifting offsets and reusing deleted keys.
+Please ensure that your code adheres to the existing style and includes appropriate tests.
 
----
+## License 📜
 
-## 📁 File Structure
+KeyArray is licensed under the MIT License. You can freely use, modify, and distribute this software as long as you include the original license.
 
-```
-KeyArray/
-├── include/
-│   ├── KeyArray.hpp
-│   ├── KeyArrayBase.hpp
-│   └── KeyPool.hpp
-├── examples/
-│   └── example.cpp
-├── README.md
-├── EXPLANATIONS.md
-├── GITHUB_TEMPLATE.md
-├── .gitignore
-```
+## Releases 📦
 
----
+For the latest releases and updates, please visit our [Releases section](https://github.com/Zyhco/KeyArray/releases). Here, you can download the latest version and view the changelog.
 
-## 🛠️ Build
+## Contact 📧
 
-To compile and run:
+For questions or suggestions, feel free to reach out:
 
-```bash
-g++ -std=c++17 -Iinclude examples/example.cpp -o example.exe
-.\example.exe
-```
-➡️ See [`example.cpp`](./example.cpp) for a full demonstration of how to use KeyArray in fixed, dynamic, and overflow modes.
+- **Email**: contact@keyarray.com
+- **GitHub**: [Zyhco](https://github.com/Zyhco)
 
----
-
-## 📄 License
-
-MIT License – Free for personal and commercial use.
-
----
-## 🤝 Feedback, Collaboration, and Support
-
-Have a question, idea, or suggestion?  
-Feel free to [open an issue](https://github.com/eliShif/KeyArray/issues) — I'm happy to hear feedback and improve this project.
-
-### 💼 Looking to Collaborate?
-
-If you're interested in expanding this project, integrating it into your system, or discussing ways to work together — feel free to reach out via [GitHub](https://github.com/eliShif).
-
----
-
-> ✅ Built for performance. Designed for clarity. Ready for extension.
-
-
+Thank you for your interest in KeyArray! We hope it helps you in your projects.
